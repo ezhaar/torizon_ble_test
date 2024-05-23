@@ -1,3 +1,5 @@
+# Introdution
+Docker build to reproduce bluez discconnection bug in AM62 SoM 
 # Build
 ```bash
 $ docker build . -t torizon_ble_test:0.1
