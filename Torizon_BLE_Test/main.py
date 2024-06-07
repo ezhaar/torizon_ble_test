@@ -12,12 +12,16 @@ async def main(ble_address: str, timeout: int):
                 sys.exit(f"BLE device: {ble_address} could not be found...")
             print(f"Found device: {ble_address}")
             async with BleakClient(device, timeout=timeout) as client:
-                print("Connected to BLE device: {ble_address}")
+                print(f"Connected to BLE device: {ble_address}")
                 print(f"Disconnected from: {ble_address}")
-            await asyncio.sleep(timeout)
-    except Exception as e:
+            print(f"waiting for 5 seconds before starting over...")
+            await asyncio.sleep(5)
+    except TimeoutError as e:
         print("Something went wrong while trying to connect...")
+        print("Please increase the timeout and try again!")
         print(e)
+    except Exception as e:
+        print("Unknow error happened...")
 
 
 if __name__ == "__main__":
